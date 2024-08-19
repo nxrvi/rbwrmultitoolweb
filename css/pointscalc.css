@@ -298,6 +298,7 @@ body {
     position: relative;
     text-align: center;
     color: white;
+    z-index: 1;
 }
 
 .hero img {
@@ -305,12 +306,6 @@ body {
     height: auto;
 }
 
-.hero-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
 .credits {
     position: absolute;
@@ -319,6 +314,7 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
     padding: 5px 10px;
     border-radius: 5px;
+    z-index: 3;
 }
 
 .credits p {
@@ -356,6 +352,87 @@ body {
 .image-card img {
     width: 100%;
     height: auto;
+}
+
+
+.content-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2; /* Ensure this is higher than the image */
+    background-color: rgba(51, 51, 51, 0.4); /* Semi-transparent background */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: rgba(51, 51, 51, 0.8); /* Semi-transparent background */
+    padding: 10px;
+    border-radius: 20px;
+    margin: 20px auto;
+    max-width: 750px;
+    margin-top: 270px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+/* Calculator Layout */
+.calculator {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 150px;
+    padding: 5px;
+    text-align: right;
+    background-color: #444;
+    border: 1px solid #555;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.rank-info {
+    position: relative;
+    text-align: left;
+    width: 400px;
+}
+
+
+.output .input-group label {
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+
+.output .input-group input {
+    width: 150px;
+    margin-top: 5px;
+    padding: 5px;
+    text-align: right;
+    background-color: #444;
+    border: 1px solid #555;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.output {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
 }
 
 footer {

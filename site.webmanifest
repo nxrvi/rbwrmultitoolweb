@@ -1,0 +1,12 @@
+{
+  "short_name": "",
+  "name": "",
+  "icons": [{
+    "src": "rbwricon.png",
+    "type": "image/png",
+    "sizes": "240x240"
+  }],
+  "start_url": "/?utm_source=homescreen",
+  "background_color": "#fafafa",
+  "theme_color": "#fafafa"
+}
