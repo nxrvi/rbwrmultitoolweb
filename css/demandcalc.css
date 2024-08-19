@@ -81,15 +81,6 @@ body {
     width: auto;
 }
 
-.github-icon-link {
-    margin-left: 15px;
-}
-
-.logo .github-icon {
-    height: 25px;
-    width: auto;
-}
-
 .nav-links-div {
     display: flex;
     gap: 10px;
@@ -116,6 +107,15 @@ body {
     padding: 10px 16px;
     text-decoration: none;
     margin-left: 40px;
+}
+
+.github-icon-link {
+    margin-left: 15px;
+}
+
+.logo .github-icon {
+    height: 25px;
+    width: auto;
 }
 
 .hero {
