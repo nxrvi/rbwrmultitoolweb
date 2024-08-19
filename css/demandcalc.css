@@ -1,4 +1,9 @@
+/* Additional CSS for static positioning */
+.input-group.static-position {
+    margin-top: 20px; /* Adjust the spacing to your preference */
+}
 
+/* Existing CSS */
 @media only screen and (max-width: 768px) {
   .calculator-grid {
     grid-template-columns: 1fr 1fr;
@@ -49,13 +54,6 @@
 .clearfix::after {
   clear: both;
 }
-
-
-
-
-
-
-
 
 body {
     font-family: Arial, sans-serif;
@@ -132,7 +130,6 @@ body {
     height: auto;
 }
 
-
 .credits {
     position: absolute;
     bottom: 10px;
@@ -180,7 +177,6 @@ body {
     height: auto;
 }
 
-
 .content-overlay {
     position: absolute;
     top: 0;
@@ -218,9 +214,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-.input-group {
-    margin-bottom: 10px;
-}
 
 .input-group label {
     display: block;
@@ -230,7 +223,7 @@ h2 {
 .input-group input {
     width: 150px;
     padding: 5px;
-    text-align: right;
+    text-align: center;
     background-color: #444;
     border: 1px solid #555;
     color: #fff;
@@ -244,4 +237,28 @@ footer {
     text-align: center;
     padding: 5px 0;
     margin-top: 0;
+}
+
+.input-group {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.input-group #error {
+    color: red;
+    font-size: 16px;
+    margin-top: 20px;
+    width: 420px;
+    visibility: hidden; /* Make it invisible but still take up space */
+    height: 1em; /* Reserve space for one line of text */
+}
+
+.input-group #error.visible {
+    visibility: visible; /* Make it visible when necessary */
+}
+
+/* Prevent shifting of Gen Load elements */
+#gen-load {
+    position: relative;
+    left: 0;
 }

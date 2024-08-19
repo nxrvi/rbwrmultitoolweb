@@ -401,6 +401,12 @@ h2 {
     margin-bottom: 20px;
 }
 
+.output {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
 .input-group {
     margin-bottom: 10px;
 }
@@ -418,6 +424,11 @@ h2 {
     border: 1px solid #555;
     color: #fff;
     border-radius: 4px;
+}
+
+.rank-info {
+    text-align: left;
+    width: 415px;
 }
 
 
