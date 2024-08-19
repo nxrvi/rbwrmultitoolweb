@@ -260,6 +260,11 @@ body {
     padding: 5px 10px;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+}
+
 .logo img {
     margin-left: 10px;
     height: 40px;
@@ -292,6 +297,15 @@ body {
     padding: 10px 16px;
     text-decoration: none;
     margin-left: 40px;
+}
+
+.github-icon-link {
+    margin-left: 15px;
+}
+
+.logo .github-icon {
+    height: 25px;
+    width: auto;
 }
 
 .hero {
@@ -365,3 +379,4 @@ footer {
     padding: 5px 0;
     margin-top: 0;
 }
+

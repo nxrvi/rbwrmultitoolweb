@@ -260,9 +260,23 @@ body {
     padding: 5px 10px;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+}
+
 .logo img {
     margin-left: 10px;
     height: 40px;
+    width: auto;
+}
+
+.github-icon-link {
+    margin-left: 15px;
+}
+
+.logo .github-icon {
+    height: 25px;
     width: auto;
 }
 
@@ -406,34 +420,6 @@ h2 {
     border-radius: 4px;
 }
 
-.rank-info {
-    position: relative;
-    text-align: left;
-    width: 400px;
-}
-
-
-.output .input-group label {
-    margin-bottom: 0;
-    margin-top: 20px;
-}
-
-.output .input-group input {
-    width: 150px;
-    margin-top: 5px;
-    padding: 5px;
-    text-align: right;
-    background-color: #444;
-    border: 1px solid #555;
-    color: #fff;
-    border-radius: 4px;
-}
-
-.output {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-}
 
 footer {
     background-color: #333;

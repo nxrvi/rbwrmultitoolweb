@@ -1,4 +1,3 @@
-// Define the Rank class
 class Rank {
     constructor(name, points) {
         this.name = name;
@@ -6,7 +5,6 @@ class Rank {
     }
 }
 
-// Define the ranks array
 const ranks = [
     new Rank("Highest Rank achieved", 9999999999999999),
     new Rank("Chief Inspector", 5000000),
@@ -24,9 +22,9 @@ const ranks = [
     new Rank("Visitor", 0)
 ];
 
-// Function to determine the current and next rank based on total points
+
 function calculateRank(totalPoints) {
-    let currentRank = ranks[ranks.length - 1]; // Default to the lowest rank
+    let currentRank = ranks[ranks.length - 1];
     let nextRank = null;
     let remainingPoints = 0;
 
@@ -46,7 +44,6 @@ function calculateRank(totalPoints) {
     };
 }
 
-// Event listener for input changes
 document.addEventListener('DOMContentLoaded', function () {
     const unit1Input = document.getElementById('unit1');
     const unit2Input = document.getElementById('unit2');
@@ -71,6 +68,5 @@ document.addEventListener('DOMContentLoaded', function () {
     unit1Input.addEventListener('input', updateRanks);
     unit2Input.addEventListener('input', updateRanks);
 
-    // Initial calculation
     updateRanks();
 });
