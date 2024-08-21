@@ -20,10 +20,10 @@
         <div class="nav-links-div">
             <a class="nav-links-divider">RBWR</a>
             <a class="nav-links" href="pointscalc.html">Points Calculator</a>
-            <a class="nav-links" href="demandcalc.html">Demand to APRM</a>
+            <a class="nav-links" href="demandcalc.html">Demand to APR</a>
             <a class="nav-links-divider">RPWR</a>
-            <a class="nav-links" href="page3.html">Points Calculator</a>
-            <a class="nav-links" href="page4.html">Demand to APRM</a>
+            <a class="nav-links" href="page3.html">Work in Progress</a>
+            <a class="nav-links" href="page4.html">Work in Progress</a>
         </div>
       </div>
 
@@ -51,16 +51,25 @@
                 </div>
 
                 <div class="output">
-                  <div class="rank-info">
-                      <p>Your current rank is: <span id="current-rank">Visitor</span></p>
-                      <p>Your next rank will be: <span id="next-rank">Trainee</span></p>
-                  </div>
+                    <div class="input-group">
+                        <label for="time-until">Minutes until next rank</label>
+                        <input type="number" id="time-until" value="5" readonly>
+                    </div>
 
-                  <div class="input-group">
-                      <label for="points-needed">Points until next rank</label>
-                      <input type="number" id="points-needed" value="1000" readonly>
-                  </div>
+                    <div class="input-group">
+                        <label for="points-needed">Points until next rank</label>
+                        <input type="number" id="points-needed" value="1000" readonly>
+                    </div>
                 </div>
+
+                <div class="output">
+                    <div class="rank-info">
+                        <p>Your current rank is: <span id="current-rank">Visitor</span></p>
+                        <p>Your next rank will be: <span id="next-rank">Trainee</span></p>
+                        <p class="minute-info">Minutes until next rank is calculated as if both Units are fully manual and Plant Demand is met!</p>
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="credits">

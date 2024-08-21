@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const currentRankElement = document.getElementById('current-rank');
     const nextRankElement = document.getElementById('next-rank');
     const pointsNeededInput = document.getElementById('points-needed');
+    const minutesUntil = document.getElementById('time-until');
 
     function updateRanks() {
         const unit1 = parseFloat(unit1Input.value) || 0;
@@ -63,6 +64,8 @@ document.addEventListener('DOMContentLoaded', function () {
         currentRankElement.textContent = currentRank.name;
         nextRankElement.textContent = nextRank ? nextRank.name : 'None';
         pointsNeededInput.value = remainingPoints;
+
+        minutesUntil.value = Math.floor((remainingPoints / 2.733333334) / 60);
     }
 
     unit1Input.addEventListener('input', updateRanks);

@@ -128,24 +128,57 @@ document.addEventListener("DOMContentLoaded", function () {
             y = CalcGenLoad(a) - ((1.299 * a) - 13);
             return Math.round(y);
         } else if (calctype === CalcType.MWtoAPRM) {
-            y = (a + 163 + 42.7) / 14.3;
+            y = CalcAprm(a);
             return parseFloat(y.toFixed(2));
         }
     }
 
     function CalcFlow(therm) {
-        let y;
+        let flow;
 
-        y = 82.8 + (13.7 * therm) + (5.87 * Math.pow(10, -3) * Math.pow(therm, 2));
+        flow = 82.8 + (13.7 * therm) + (5.87 * Math.pow(10, -3) * Math.pow(therm, 2));
 
-        return Math.round(y) + 2;
+        return Math.round(flow) + 2;
     }
 
     function CalcGenLoad(therm) {
-      let y;
+        let mw;
 
-      y = -135 + (13 * therm) + (5.33 * Math.pow(10, -3) * Math.pow(therm, 2));
+        mw = -135 + (13 * therm) + (5.33 * Math.pow(10, -3) * Math.pow(therm, 2));
 
-      return Math.round(y);
+        return Math.round(mw);
+    }
+
+    function CalcAprm(mw) {
+        let therm;
+
+        /*
+        mw = -135 + (13 * therm) + (5.33 * Math.pow(10, -3) * Math.pow(therm, 2));
+        mw + 135 = (13 * therm) + (5.33 * Math.pow(10, -3) * Math.pow(therm, 2));
+        mw + 135 - (13 * therm) = 5.33 * Math.pow(10, -3) * Math.pow(therm, 2);
+        mw + 135 - (13 * therm) / 5.33 * Math.pow(10, -3) = Math.pow(therm, 2);
+        mw + 135 - 13 * -therm / 5.33 * Math.pow(10, -3) = math.pow(therm, 2);
+        mw + 135 - 13 = math.pow(therm, 2) / -therm / 5.33 * Math.pow(10, -3);
+        mw + 135 - 13 * (5.33 * Math.pow(10, -3)) = math.pow(therm, 2) / -therm;
+
+        therm = Math.sqrt((mw + 135 - 13) / -therm / 5.33 * Math.pow(10, -3));
+
+        mw = -135 + (13 * therm) + (5.33 * Math.pow(10, -3) * Math.pow(therm, 2));
+        mw = -135 + (13 * therm) + 5.33 * Math.pow(10, -3) * Math.pow(therm, 2);
+        mw / Math.pow(therm, 2) = -135 + 13 * therm + 5.33 * Math.pow(10, -3);
+        mw / Math.pow(therm, 2) / therm = -135 + 13 + 5.33 * Math.pow(10, -3);
+        Math.pow(therm, 2) / therm = (-135 + 13 + 5.33 * Math.pow(10, -3)) * mw;
+
+        therm = (-135 + 13 + 5.33 * Math.pow(10, -3)) * mw;
+
+        mw = 14.3 * therm - 163 - 42.7
+        mw + 42.7 = 14.3 * therm - 163
+        mw + 42.7 + 163 = 14.3 * therm
+        (mw + 42.7 + 163) / 14.3 = therm
+        */
+        therm = (mw + 61.32 + 163) / 14.3;
+
+
+        return parseFloat(therm.toFixed(2));
     }
 });
