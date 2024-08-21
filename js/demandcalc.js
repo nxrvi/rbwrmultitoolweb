@@ -176,6 +176,8 @@ document.addEventListener("DOMContentLoaded", function () {
         mw + 42.7 + 163 = 14.3 * therm
         (mw + 42.7 + 163) / 14.3 = therm
         */
+        /* 61.32 represents the avg. site usage. if i manage to get a accurate reading regarding that,
+        i might be able to make the conversion more accurate*/
         therm = (mw + 61.32 + 163) / 14.3;
 
 
