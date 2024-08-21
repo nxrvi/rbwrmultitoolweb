@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
             lbError.classList.add('visible');
             lbError.textContent = 'It is generally not recommended to exceed 108% APRM';
             aprmInput.style.backgroundColor = 'red';
-        } else {
+        } else if (invalid !== 2 && invalid !== 1) {
             aprmInput.style.backgroundColor = 'rgb(75, 75, 75)';
             lbError.classList.remove('visible');
         }
@@ -101,9 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         y = Calc(a, CalcType.APRMtoMW);
 
-        if (y < 0) {
-            y = 0;
-        }
 
         demandInput.value = y;
 
@@ -111,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
             lbError.classList.add('visible');
             lbError.textContent = 'It is generally not recommended to exceed 108% APRM';
             aprmInput.style.backgroundColor = 'red';
-        } else {
+        } else if (invalid !== 2 && invalid !== 1) {
             aprmInput.style.backgroundColor = 'rgb(75, 75, 75)';
             lbError.classList.remove('visible');
         }
@@ -125,7 +122,12 @@ document.addEventListener("DOMContentLoaded", function () {
     function Calc(a, calctype) {
         let y;
         if (calctype === CalcType.APRMtoMW) {
-            y = CalcGenLoad(a) - ((1.299 * a) - 13);
+            let mw = CalcGenLoad(a);
+            if (mw > 0) {
+                y = mw - ((1.299 * a) - 13)
+            } else {
+                y = 0;
+            }
             return Math.round(y);
         } else if (calctype === CalcType.MWtoAPRM) {
             y = CalcAprm(a);
@@ -145,6 +147,10 @@ document.addEventListener("DOMContentLoaded", function () {
         let mw;
 
         mw = -135 + (13 * therm) + (5.33 * Math.pow(10, -3) * Math.pow(therm, 2));
+
+        if (mw < 0) {
+            mw = 0;
+        }
 
         return Math.round(mw);
     }

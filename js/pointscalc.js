@@ -6,7 +6,6 @@ class Rank {
 }
 
 const ranks = [
-    new Rank("Highest Rank achieved", 9999999999999999),
     new Rank("Chief Inspector", 5000000),
     new Rank("Senior Inspector", 2000000),
     new Rank("Inspector", 1000000),
@@ -62,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const { currentRank, nextRank, remainingPoints } = calculateRank(totalPoints);
 
         currentRankElement.textContent = currentRank.name;
-        nextRankElement.textContent = nextRank ? nextRank.name : 'None';
+        nextRankElement.textContent = nextRank ? nextRank.name : 'Highest Rank achieved';
         pointsNeededInput.value = remainingPoints;
 
         minutesUntil.value = Math.floor((remainingPoints / 2.733333334) / 60);
