@@ -1,5 +1,7 @@
 # Web Version of the RBWR Multitool
 
+[![pages-build-deployment](https://github.com/nxrvi/rbwrmultitoolweb/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/nxrvi/rbwrmultitoolweb/actions/workflows/pages/pages-build-deployment)
+
 ## Stuff that is possible currently
 
 - Calculate your total points, points until next rank and remaining minutes until next rank
