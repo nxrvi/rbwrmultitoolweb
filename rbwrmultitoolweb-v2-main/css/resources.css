@@ -1,0 +1,549 @@
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+    box-sizing: border-box;
+    
+  }
+  
+  
+  ::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+  }
+  
+  ::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+  }
+  
+  hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+  }
+  
+  audio,
+  canvas,
+  iframe,
+  img,
+  svg,
+  video {
+    vertical-align: middle;
+  }
+  
+  fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  .hidden,
+  [hidden] {
+    display: none !important;
+  }
+  
+  .visually-hidden {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+    /* 1 */
+  }
+  
+  .visually-hidden.focusable:active,
+  .visually-hidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    white-space: inherit;
+    width: auto;
+  }
+  
+  .invisible {
+    visibility: hidden;
+  }
+  
+  .clearfix::before,
+  .clearfix::after {
+    content: "";
+    display: table;
+  }
+  
+  .clearfix::after {
+    clear: both;
+  }
+  
+  @media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+  }
+  
+  @media print,
+    (-webkit-min-device-pixel-ratio: 1.25),
+    (min-resolution: 1.25dppx),
+    (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+  }
+  
+  @media print {
+    *,
+    *::before,
+    *::after {
+      background: #fff !important;
+      color: #000 !important;
+      /* Black prints faster */
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+  
+    a,
+    a:visited {
+      text-decoration: underline;
+    }
+  
+    a[href]::after {
+      content: " (" attr(href) ")";
+    }
+  
+    abbr[title]::after {
+      content: " (" attr(title) ")";
+    }
+  
+    a[href^="#"]::after,
+    a[href^="javascript:"]::after {
+      content: "";
+    }
+  
+    pre {
+      white-space: pre-wrap !important;
+    }
+  
+    pre,
+    blockquote {
+      border: 1px solid #999;
+      page-break-inside: avoid;
+    }
+  
+    tr,
+    img {
+      page-break-inside: avoid;
+    }
+  
+    p,
+    h2,
+    h3 {
+      orphans: 3;
+      widows: 3;
+    }
+  
+    h2,
+    h3 {
+      page-break-after: avoid;
+    }
+  }
+  
+  
+  /* Additional CSS for static positioning */
+  .input-group.static-position {
+      margin-top: 20px; /* Adjust the spacing to your preference */
+  }
+  
+  
+  .hidden,
+  [hidden] {
+    display: none !important;
+  }
+  
+  .visually-hidden {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+  
+  .visually-hidden.focusable:active,
+  .visually-hidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    white-space: inherit;
+    width: auto;
+  }
+  
+  .clearfix::before,
+  .clearfix::after {
+    content: "";
+    display: table;
+  }
+  
+  .clearfix::after {
+    clear: both;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    height: 300vh;
+   
+  }
+
+  main {
+    min-height: 100vh;
+    height: 300vh;
+    background-color: #252525;
+  }
+  
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 15px;
+
+  }
+    
+  .logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .logo img {
+    height: 40px;
+    width: auto;
+  }
+  
+  .nav-links-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .nav-links {
+      color: #f2f2f2;
+      text-align: center;
+      padding: 10px 16px;
+      text-decoration: none;
+      font-size: 1rem;
+  }
+  
+  .nav-links:hover {
+    background-color: #ddd;
+    color: black;
+    border-radius: 7px;
+  }
+  
+  .nav-links-divider {
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px 16px;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .github-icon-link {
+    margin-left: 15px;
+  }
+  
+  .logo .github-icon {
+    height: 25px;
+    width: auto;
+  }
+  
+  .hero {
+    text-align: left;
+    color: white;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    overflow-x: hidden;
+  }
+  
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+  }
+  
+  
+  .credits {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .credits p {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #f2f2f2;
+    z-index: 3;
+  }
+  
+  .credits a {
+    color: #f2f2f2;
+    text-decoration: none;
+  }
+  
+  .credits a:hover {
+    text-decoration: underline;
+  }
+  
+  .content {
+      padding: 20px;
+      text-align: center;
+  }
+  
+  .content-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 100;
+      z-index: 2;
+      background-color: rgba(51, 51, 51, 0.4);
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0px;
+      
+
+  }
+
+
+  
+  h2 {
+      margin-bottom: 20px;
+  }
+  
+  .container {
+      background-color: rgba(51, 51, 51, 0.8);
+      padding: 10px;
+      border-radius: 20px;
+      margin: 20px auto;
+      max-width: 750px;
+      margin-top: 270px;
+  }
+  
+  .calculator-row1 {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+  }
+  
+  .calculator-row2 {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+  }
+  
+  
+  .input-group label {
+      display: block;
+      margin-bottom: 5px;
+  }
+  
+  .input-group input {
+      width: 150px;
+      padding: 5px;
+      text-align: center;
+      background-color: #444;
+      border: 1px solid #555;
+      color: #fff;
+      border-radius: 4px;
+  }
+  
+  
+  footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    font-size: 0.875rem;
+    margin-top: auto;
+    padding-top: 10px;
+  }
+  
+  .input-group {
+      margin-bottom: 10px;
+      position: relative;
+  }
+  
+  .input-group #error {
+      color: red;
+      font-size: 16px;
+      margin-top: 20px;
+      width: 420px;
+      visibility: hidden; /* Make it invisible but still take up space */
+      height: 1em; /* Reserve space for one line of text */
+  }
+  
+  .input-group #error.visible {
+      visibility: visible; /* Make it visible when necessary */
+  }
+  
+  /* Prevent shifting of Gen Load elements */
+  #gen-load {
+      position: relative;
+      left: 0;
+  }
+  
+  
+  /* Responsive Styles */
+  @media (min-width: 768px) {
+    .navbar {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    .logo {
+      margin-bottom: 0;
+    }
+  
+    .nav-links-div {
+      gap: 10px;
+    }
+  
+    .nav-links,
+    .nav-links-divider {
+      font-size: 1.2rem;
+    }
+  
+    .hero-text {
+      font-size: 1.3rem;
+      width: 50%;
+    }
+  
+    .credits {
+      bottom: 20px;
+      right: 20px;
+    }
+  
+    footer {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .nav-links,
+    .nav-links-divider {
+      padding: 8px 12px;
+      font-size: 0.875rem;
+    }
+  
+    .credits p {
+      font-size: 0.45rem;
+      z-index: 3;
+    }
+  
+    footer {
+      font-size: 0.75rem;
+    }
+  
+    .hero img {
+      width: auto;
+      height: 100%;
+    }
+  
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+  
+    .logo img {
+      margin-left: 10px;
+      height: 40px;
+      width: auto;
+    }
+  
+    .container {
+      background-color: rgba(51, 51, 51, 0.8);
+      padding: 20px;
+      border-radius: 20px;
+      margin: 20px auto;
+      max-width: 100%;
+      width: 90%;
+    }
+  
+ 
+  
+    .calculator-row1,
+    .calculator-row2 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+  }
+  
+
+
+
+  .container a {
+    display: flex;
+    text-decoration: none;
+    color: #bebebe;
+    font-weight: 700;
+
+  }
+
+
+  .container a:hover{
+transition: all 0.2s;
+
+    color: #f2f2f2 ;
+  }
+
+
+
+
+iframe{
+  border: 1px;
+  border-radius: 25px;
+  margin: 25px;
+}
+
+@media only screen and (max-width: 768px) {
+
+  iframe{
+    width: auto;
+    height: auto;
+  }
+}
+
+
+label{
+  font-size: 1rem;
+  font-weight: 600;
+}
