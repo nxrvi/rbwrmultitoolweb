@@ -57,9 +57,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const unit2 = parseFloat(unit2Input.value) || 0;
         const totalPoints = unit1 + unit2;
         totalInput.value = totalPoints;
-
+        
         const { currentRank, nextRank, remainingPoints } = calculateRank(totalPoints);
-
+        console.log(totalPoints)
+        
+        
         currentRankElement.textContent = currentRank.name;
         nextRankElement.textContent = nextRank ? nextRank.name : 'Highest Rank achieved';
         pointsNeededInput.value = remainingPoints;

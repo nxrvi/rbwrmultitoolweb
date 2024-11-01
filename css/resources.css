@@ -215,7 +215,7 @@ html {
   main {
     min-height: 100vh;
     height: 300vh;
-    background-color: #333;
+    background-color: #252525;
   }
   
   .navbar {
@@ -333,12 +333,16 @@ html {
       bottom: 100;
       z-index: 2;
       background-color: rgba(51, 51, 51, 0.4);
-      padding: 20px;
       box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-top: 0px;
       
 
   }
+
+
   
   h2 {
       margin-bottom: 20px;
@@ -386,9 +390,9 @@ html {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 10px;
     font-size: 0.875rem;
     margin-top: auto;
+    padding-top: 10px;
   }
   
   .input-group {
@@ -492,20 +496,7 @@ html {
       width: 90%;
     }
   
-    .content-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 2;
-      background-color: rgba(51, 51, 51, 0.4);
-      padding: 20px;
-      box-sizing: border-box;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+ 
   
     .calculator-row1,
     .calculator-row2 {
@@ -533,3 +524,26 @@ transition: all 0.2s;
 
     color: #f2f2f2 ;
   }
+
+
+
+
+iframe{
+  border: 1px;
+  border-radius: 25px;
+  margin: 25px;
+}
+
+@media only screen and (max-width: 768px) {
+
+  iframe{
+    width: auto;
+    height: auto;
+  }
+}
+
+
+label{
+  font-size: 1rem;
+  font-weight: 600;
+}
