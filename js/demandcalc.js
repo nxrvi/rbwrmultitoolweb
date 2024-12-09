@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let suppressTB_Demand = false;
     let suppressTB_APRM = false;
-
+//sup
     const CalcType = {
         MWtoAPRM: 'MWtoAPRM',
         APRMtoMW: 'APRMtoMW'
