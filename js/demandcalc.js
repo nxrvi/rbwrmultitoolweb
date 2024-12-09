@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const demandInput = document.getElementById("demand");
     const feedwaterInput = document.getElementById("feedwater");
     const genLoadInput = document.getElementById("gen-load");
+    const siteUsage = document.getElementById("site-usage");
 
     let suppressTB_Demand = false;
     let suppressTB_APRM = false;
@@ -11,6 +12,25 @@ document.addEventListener("DOMContentLoaded", function () {
         MWtoAPRM: 'MWtoAPRM',
         APRMtoMW: 'APRMtoMW'
     };
+
+    let usage;
+
+    
+    siteUsage.addEventListener('input', function () {
+
+
+        let x = siteUsage.value;
+        x = parseFloat(x);
+
+        if(x < 0 || isNaN(x)){
+            usage = 61.32;
+
+        }else{
+            usage = x;
+        }
+    });
+
+    console.log(usage);
 
     demandInput.addEventListener('input', function () {
         if (suppressTB_Demand) return;
@@ -46,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
             lbError.classList.remove('visible');
         }
 
-        const y = Calc(a, CalcType.MWtoAPRM);
+        const y = Calc(a, CalcType.MWtoAPRM, usage);
         aprmInput.value = y;
 
         if (y > 108) {
@@ -99,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
             lbError.classList.remove('visible');
         }
 
-        y = Calc(a, CalcType.APRMtoMW);
+        y = Calc(a, CalcType.APRMtoMW, usage);
 
 
         demandInput.value = y;
@@ -119,7 +139,8 @@ document.addEventListener("DOMContentLoaded", function () {
         suppressTB_Demand = false;
     });
 
-    function Calc(a, calctype) {
+
+    function Calc(a, calctype, usage) {
         let y;
         if (calctype === CalcType.APRMtoMW) {
             let mw = CalcGenLoad(a);
@@ -130,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             return Math.round(y);
         } else if (calctype === CalcType.MWtoAPRM) {
-            y = CalcAprm(a);
+            y = CalcAprm(a, usage);
             return parseFloat(y.toFixed(2));
         }
     }
@@ -155,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return Math.round(mw);
     }
 
-    function CalcAprm(mw) {
+    function CalcAprm(mw, usage) {
         let therm;
 
         /*
@@ -184,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
         */
         /* 61.32 represents the avg. site usage. if i manage to get a accurate reading regarding that,
         i might be able to make the conversion more accurate*/
-        therm = (mw + 61.32 + 163) / 14.3;
+        therm = (mw + usage + 163) / 14.3;
 
 
         return parseFloat(therm.toFixed(2));
