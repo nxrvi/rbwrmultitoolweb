@@ -7,30 +7,82 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let suppressTB_Demand = false;
     let suppressTB_APRM = false;
-//sup
+
     const CalcType = {
         MWtoAPRM: 'MWtoAPRM',
         APRMtoMW: 'APRMtoMW'
     };
 
-    let usage;
+    let usage = 61.32;
 
+
+    class Calculator {
+        constructor(usage) {
+            this.usage = usage
+        }
+
+        setUsage(value) {
+            this.usage = isNaN(value) || value < 0 ? 61.32 : value;
+        }
+
+        calc(type, value){
+            let result;
+            if (type === CalcType.APRMtoMW) {
+                result = this.APRMtoMW(value);
+            }
+            else if (type === CalcType.MWtoAPRM) {
+                result = this.MWtoAPRM(value);
+            }
+            return result;
+        }
+
+        APRMtoMW(aprm){
+            let mw = this.CalcGenLoad
+
+            if (mw > 0) {
+                return mw -((1.299 * aprm) - 13);
+            }else{
+                return 0;
+            }
+        }
+
+        MWtoAPRM(mw){
+            return parseFloat(this.CalcAprm(mw).toFixed(2));
+        }
+
+        calcFlow(mw){
+            let flow;
+
+            flow = 82.8 + (13.7 * mw) + (5.87 * Math.pow(10, -3) * Math.pow(mw, 2));
     
-    siteUsage.addEventListener('input', function () {
+            return Math.round(flow) + 2;
+        }
 
 
+        CalcGenLoad(mw) {
+            let gen_load = -135 + (13 * mw) + (5.33 * Math.pow(10, -3) * Math.pow(mw, 2));
+
+            return Math.round(gen_load);
+        }
+
+        CalcAprm(mw) {
+            let aprm;
+            aprm = (mw + this.usage + 163) / 14.3;
+            return parseFloat(aprm.toFixed(2));
+        }
+
+    }
+
+    const calculator = new Calculator(usage);
+
+
+    siteUsage.addEventListener("input", function() {
         let x = siteUsage.value;
         x = parseFloat(x);
-
-        if(x < 0 || isNaN(x)){
-            usage = 61.32;
-
-        }else{
-            usage = x;
-        }
+        calculator.setUsage(x);
     });
 
-    console.log(usage);
+
 
     demandInput.addEventListener('input', function () {
         if (suppressTB_Demand) return;
@@ -66,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
             lbError.classList.remove('visible');
         }
 
-        const y = Calc(a, CalcType.MWtoAPRM, usage);
+        const y = calculator.calc(CalcType.MWtoAPRM, a)
         aprmInput.value = y;
 
         if (y > 108) {
@@ -119,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
             lbError.classList.remove('visible');
         }
 
-        y = Calc(a, CalcType.APRMtoMW, usage);
+        y = calculator.calc(CalcType.APRMtoMW, a);
 
 
         demandInput.value = y;
@@ -138,47 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         suppressTB_Demand = false;
     });
-
-
-    function Calc(a, calctype, usage) {
-        let y;
-        if (calctype === CalcType.APRMtoMW) {
-            let mw = CalcGenLoad(a);
-            if (mw > 0) {
-                y = mw - ((1.299 * a) - 13)
-            } else {
-                y = 0;
-            }
-            return Math.round(y);
-        } else if (calctype === CalcType.MWtoAPRM) {
-            y = CalcAprm(a, usage);
-            return parseFloat(y.toFixed(2));
-        }
-    }
-
-    function CalcFlow(therm) {
-        let flow;
-
-        flow = 82.8 + (13.7 * therm) + (5.87 * Math.pow(10, -3) * Math.pow(therm, 2));
-
-        return Math.round(flow) + 2;
-    }
-
-    function CalcGenLoad(therm) {
-        let mw;
-
-        mw = -135 + (13 * therm) + (5.33 * Math.pow(10, -3) * Math.pow(therm, 2));
-
-        if (mw < 0) {
-            mw = 0;
-        }
-
-        return Math.round(mw);
-    }
-
-    function CalcAprm(mw, usage) {
-        let therm;
-
+});
         /*
         mw = -135 + (13 * therm) + (5.33 * Math.pow(10, -3) * Math.pow(therm, 2));
         mw + 135 = (13 * therm) + (5.33 * Math.pow(10, -3) * Math.pow(therm, 2));
@@ -205,9 +217,3 @@ document.addEventListener("DOMContentLoaded", function () {
         */
         /* 61.32 represents the avg. site usage. if i manage to get a accurate reading regarding that,
         i might be able to make the conversion more accurate*/
-        therm = (mw + usage + 163) / 14.3;
-
-
-        return parseFloat(therm.toFixed(2));
-    }
-});
