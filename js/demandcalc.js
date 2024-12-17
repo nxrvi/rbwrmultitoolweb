@@ -37,10 +37,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         APRMtoMW(aprm){
-            let mw = this.CalcGenLoad
+            let mw = this.CalcGenLoad(aprm);
 
             if (mw > 0) {
-                return mw -((1.299 * aprm) - 13);
+                return (mw -((1.299 * aprm) - 13)).toFixed(0);
             }else{
                 return 0;
             }
