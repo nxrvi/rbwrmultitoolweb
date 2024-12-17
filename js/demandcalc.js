@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         APRMtoMW: 'APRMtoMW'
     };
 
-    let usage;
+    let usage = 61.32;
 
     
     siteUsage.addEventListener('input', function () {
