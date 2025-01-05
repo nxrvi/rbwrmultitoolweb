@@ -1,3 +1,4 @@
+
 class Rank {
     constructor(name, points) {
         this.name = name;
@@ -6,6 +7,7 @@ class Rank {
 }
 
 const ranks = [
+  new Rank("Plant Manager", 10000000),
     new Rank("Chief Inspector", 5000000),
     new Rank("Senior Inspector", 2000000),
     new Rank("Inspector", 1000000),
@@ -51,22 +53,34 @@ document.addEventListener('DOMContentLoaded', function () {
     const nextRankElement = document.getElementById('next-rank');
     const pointsNeededInput = document.getElementById('points-needed');
     const minutesUntil = document.getElementById('time-until');
+  const navbarToggle = document.querySelector('.navbar-toggle');
+  const navbarlinks = document.querySelector('.navbar-links');
+  const navbar = document.querySelector('.navbar');
+
+  if (navbarToggle && navbar && navbarlinks) {
+    navbarToggle.addEventListener('click', function () {
+      navbarlinks.classList.toggle('show');
+      navbar.classList.toggle('show');
+    });
+  } else {
+    console.error("Navbar toggle or navbar elements not found!");
+  }
 
     function updateRanks() {
         const unit1 = parseFloat(unit1Input.value) || 0;
         const unit2 = parseFloat(unit2Input.value) || 0;
         const totalPoints = unit1 + unit2;
         totalInput.value = totalPoints;
-        
+
         const { currentRank, nextRank, remainingPoints } = calculateRank(totalPoints);
         console.log(totalPoints)
-        
-        
-        currentRankElement.textContent = currentRank.name;
+
+
+      currentRankElement.textContent = currentRank.name;
         nextRankElement.textContent = nextRank ? nextRank.name : 'Highest Rank achieved';
         pointsNeededInput.value = remainingPoints;
 
-        minutesUntil.value = Math.floor((remainingPoints / 2.733333334) / 60);
+      minutesUntil.value = Math.floor((remainingPoints / 2.9) / 60);
     }
 
     unit1Input.addEventListener('input', updateRanks);

@@ -15,6 +15,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let usage = 61.32;
 
+  const navbarToggle = document.querySelector('.navbar-toggle');
+  const navbarlinks = document.querySelector('.navbar-links');
+  const navbar = document.querySelector('.navbar');
+
+  if (navbarToggle && navbar && navbarlinks) {
+    navbarToggle.addEventListener('click', function () {
+      navbarlinks.classList.toggle('show');
+      navbar.classList.toggle('show');
+    });
+  } else {
+    console.error("Navbar toggle or navbar elements not found!");
+  }
+
 
     class Calculator {
         constructor(usage) {
@@ -54,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let flow;
 
             flow = 82.8 + (13.7 * mw) + (5.87 * Math.pow(10, -3) * Math.pow(mw, 2));
-    
+
             return Math.round(flow) + 2;
         }
 
@@ -62,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
         CalcGenLoad(mw) {
             let gen_load = -135 + (13 * mw) + (5.33 * Math.pow(10, -3) * Math.pow(mw, 2));
 
-            return Math.round(gen_load);
+          return Math.max(0, Math.round(gen_load));
         }
 
         CalcAprm(mw) {
