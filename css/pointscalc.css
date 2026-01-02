@@ -124,7 +124,6 @@ body {
   width: 100%;
   object-fit: cover;
   overflow: hidden;
-  min-height: 100vw;
 }
 
 .credits {
@@ -296,6 +295,10 @@ h2 {
   .content-text {
     font-size: 0.75rem;
     width: 70%;
+  }
+
+  .content-image {
+    min-height: 100vw;
   }
 
   .credits p {
