@@ -15,6 +15,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 .navbar, .content, .footer {
@@ -275,6 +276,7 @@ a {
 
   .content-image {
     min-height: 100vw;
+    min-height: -webkit-fill-available;
   }
 
   .credits p {
