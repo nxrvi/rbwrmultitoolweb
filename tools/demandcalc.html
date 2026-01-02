@@ -11,79 +11,77 @@
 </head>
 
 <body>
-<button class="navbar-toggle">☰</button>
-
-<nav class="navbar">
+<div class="wrapper">
+    <div class="navbar">
+        <div class="navbar-toggle">
+            <button class="navbar-toggle-button">☰</button>
+        </div>
         <div class="logo">
             <a href="../index.html"><img src="../rbwricon.png" alt="Logo"></a>
             <a href="https://github.com/nxrvi/rbwrmultitoolweb/" target="_blank" class="github-icon-link">
                 <img src="../img/github-mark-white.png" alt="GitHub Repository" class="github-icon">
             </a>
         </div>
-  <div class="navbar-links">
-    <div class="nav-links-div-rbwr">
-      <a class="nav-links-divider">RBWR</a>
-      <a class="nav-links" href="pointscalc.html">Points Calculator</a>
-      <a class="nav-links" href="demandcalc.html">Demand to APR</a>
-      <a class="nav-links" href="resources.html">Resources</a>
-    </div>
-    <div class="nav-links-div-rpwr">
-      <a class="nav-links-divider">RPWR</a>
-      <a class="nav-links" href="../404.html">Work in Progress</a>
-      <a class="nav-links" href="../404.html">Work in Progress</a>
-    </div>
-  </div>
-</nav>
-
-    <div class="hero">
-      <img src="../img/private.webp" alt="Background Image">
-      <div class="credits">
-        <p>Photo by <a href="https://www.youtube.com/watch?v=iik25wqIuFo" target="_blank" rel="noopener noreferrer">nxrvi</a>
-          from Personal Archive</p>
-      </div>
-    </div>
-
-<div class="container">
-  <h2>Demand to APR Calculator</h2>
-  <div class="calculator">
-    <div class="input-group">
-      <label for="aprm">Thermal Power in %</label>
-      <input type="number" id="aprm" value="0">
-    </div>
-    <div class="input-group">
-      <label for="demand">Demand in MWe</label>
-      <input type="number" id="demand" value="0">
-    </div>
-    <div class="input-group">
-      <label for="site-usage">Site Usage in MWe</label>
-      <input type="number" id="site-usage" value="61.32">
-    </div>
-  </div>
-  <div class="output">
-    <div class="input-group">
-      <label for="gen-load">Gen Load in MWe</label>
-      <input type="number" id="gen-load" value="0" readonly>
-    </div>
-    <div class="input-group">
-      <label for="feedwater">Feedwater Flow in kg/s</label>
-      <input type="number" id="feedwater" value="0" readonly>
-    </div>
-  </div>
-
-  <div class="error">
-    <label id="error" class="error">The values in the fields must be greater than 0!</label>
-  </div>
-  <div>
-    <p class="note">Actual output can be +/- a few MWe depending on Reactor Type!</p>
+        <div class="navbar-links">
+            <div class="nav-links-div-rbwr">
+                <a class="nav-links-divider">RBWR</a>
+                <a class="nav-links" href="pointscalc.html">Points Calculator</a>
+                <a class="nav-links" href="demandcalc.html">Demand to APR</a>
+                <a class="nav-links" href="resources.html">Resources</a>
+            </div>
         </div>
     </div>
 
-    <footer>
-      <p>&copy; 2025 × This project is protected by the terms of the GPL-3.0 License. Icons owned by RBWR. Photos
-        credited accordingly.</p>
-    </footer>
+    <div class="content">
+        <div class="container">
+            <h2>Demand to APR Calculator</h2>
+            <div class="calculator">
+                <div class="input-group">
+                    <label for="aprm">Thermal Power in %</label>
+                    <input type="number" id="aprm" value="0">
+                </div>
+                <div class="input-group">
+                    <label for="demand">Demand in MWe</label>
+                    <input type="number" id="demand" value="0">
+                </div>
+                <div class="input-group">
+                    <label for="site-usage">Site Usage in MWe</label>
+                    <input type="number" id="site-usage" value="61.32">
+                </div>
+            </div>
+            <div class="output">
+                <div class="input-group">
+                    <label for="gen-load">Gen Load in MWe</label>
+                    <input type="number" id="gen-load" value="0" readonly>
+                </div>
+                <div class="input-group">
+                    <label for="feedwater">Feedwater Flow in kg/s</label>
+                    <input type="number" id="feedwater" value="0" readonly>
+                </div>
+            </div>
 
-    <script src="../js/demandcalc.js"></script>
+            <div class="error">
+                <label id="error" class="error">The values in the fields must be greater than 0!</label>
+            </div>
+            <div>
+                <p class="note">Actual output can be +/- a few MWe depending on Reactor Type!</p>
+            </div>
+        </div>
+
+        <img class="content-image" src="../img/update_teaser_2.webp" alt="Background Image">
+        <div class="credits">
+            <p>Photo by <a href="https://discord.com/channels/1020732466882945054/1299865805349064715/1432072142417301515" target="_blank" rel="noopener noreferrer">RBWR</a> from
+                <a href="https://discord.com/invite/rbwr" target="_blank" rel="noopener noreferrer">RBWR Community Server</a>
+                in <a href="https://discord.com/channels/1020732466882945054/1299865805349064715" target="_blank"
+                      rel="noopener noreferrer">#rbwr-peeks</a></p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2026 × This project is protected by the terms of the GPL-3.0 License. Icons owned by RBWR. Photos
+            credited accordingly.</p>
+    </div>
+</div>
 </body>
-
+<script src="../js/demandcalc.js"></script>
 </html>
