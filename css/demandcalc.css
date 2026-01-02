@@ -124,6 +124,7 @@ body {
   width: 100%;
   object-fit: cover;
   overflow: hidden;
+  min-height: 100vw;
 }
 
 .credits {
