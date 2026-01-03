@@ -15,7 +15,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  min-height: -webkit-fill-available;
 }
 
 .navbar, .content, .footer {
@@ -308,7 +307,6 @@ h2 {
 
   .content-image {
     min-height: 100vh;
-    min-height: -webkit-fill-available;
   }
 
   .credits p {
@@ -345,5 +343,17 @@ h2 {
   h2 {
     margin-bottom: 20px;
     font-size: 1.5rem;
+  }
+
+  @supports (height: 100dvh) {
+    .wrapper {
+      min-height: 100dvh;
+    }
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    .wrapper {
+      min-height: -webkit-fill-available;
+    }
   }
 }
