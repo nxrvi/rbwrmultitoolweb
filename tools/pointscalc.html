@@ -64,7 +64,8 @@
                             <label><input type="checkbox" class="subsystem-toggle" data-system="u1" data-subsystem="4" unchecked> Balancer Auto</label>
                             <label><input type="checkbox" class="subsystem-toggle" data-system="u1" data-subsystem="5" unchecked> Condenser Auto</label>
                             <label><input type="checkbox" class="subsystem-toggle" data-system="u1" data-subsystem="6" unchecked> Deaerator Auto</label>
-                            <label><input type="checkbox" class="subsystem-toggle" data-system="u1" data-subsystem="7" unchecked> Deaerator Configured</label>
+
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u1_da_config" data-subsystem="1" checked> Deaerator Configured</label>
                         </div>
                         <div class="system-rate">Current Rate: <span id="u1-rate">1.00</span> pts/s</div>
                     </div>
@@ -79,7 +80,8 @@
                             <label><input type="checkbox" class="subsystem-toggle" data-system="u2" data-subsystem="5" unchecked> Condenser Auto</label>
                             <label><input type="checkbox" class="subsystem-toggle" data-system="u2" data-subsystem="6" unchecked> Deaerator Auto</label>
                             <label><input type="checkbox" class="subsystem-toggle" data-system="u2" data-subsystem="7" unchecked> EDG Auto</label>
-                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2" data-subsystem="8" unchecked> Deaerator Configured</label>
+
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2_da_config" data-subsystem="1" checked> Deaerator Configured</label>
                         </div>
                         <div class="system-rate">Current Rate: <span id="u2-rate">1.00</span> pts/s</div>
                     </div>
@@ -104,8 +106,10 @@
                     <div class="system-group">
                         <h4>Plant Demand (Max: 0.4 pts/s)</h4>
                         <div class="subsystems">
-                            <label><input type="checkbox" class="subsystem-toggle" data-system="demand" data-subsystem="1" checked> U1 Demand Met</label>
-                            <label><input type="checkbox" class="subsystem-toggle" data-system="demand" data-subsystem="2" checked> U2 Demand Met</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="demandU" data-subsystem="1" checked> U1 Demand Met</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="demandU" data-subsystem="2" checked> U2 Demand Met</label>
+
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="demandP" data-subsystem="1" checked> Whole Plant Demand Met</label>
                         </div>
                         <div class="system-rate">Current Rate: <span id="demand-rate">0.40</span> pts/s</div>
                     </div>

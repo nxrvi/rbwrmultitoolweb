@@ -25,48 +25,50 @@ const ranks = [
 const subsystemStates = {
     // measured in autos on
     u1: {},
+    u1_da_config: true,
+
     u2: {},
+    u2_da_config: true,
+
     tcr: {},
     fwp: false,
 
-    // meets (by unit)
-    demand: {}
+    // meets
+    demandU: {},
+    demandP: true
 };
 function calculateU1Rate() {
     const maxPPS = 1;
 
     const autosActiveCount = Object.values(subsystemStates.u1).filter(v => v).length;
-    const basePoints = maxPPS / (autosActiveCount + 1);
+    const basePoints = maxPPS / (autosActiveCount + 1 + (!subsystemStates.u1_da_config ? 1 : 0));
 
-    return subsystemStates.demand[1] ? basePoints : 0;
+    return subsystemStates.demandU[1] ? basePoints : 0;
 }
 function calculateU2Rate() {
     const maxPPS = 1;
 
     const autosActiveCount = Object.values(subsystemStates.u2).filter(v => v).length;
-    const basePoints = maxPPS / (autosActiveCount + 1);
+    const basePoints = maxPPS / (autosActiveCount + 1 + (!subsystemStates.u2_da_config ? 1 : 0));
 
-    return subsystemStates.demand[2] ? basePoints : 0;
+    return subsystemStates.demandU[2] ? basePoints : 0;
 }
 function calculateTCRRate() {
     const maxPPS = 1/3;
 
     const values = Object.values(subsystemStates.tcr);
     const autosActiveCount = values.filter(v => v).length;
-    const basePoints = maxPPS * (1 - autosActiveCount / values.length)
+    const basePoints = autosActiveCount === 0 ? maxPPS : 0;
 
-    return subsystemStates.demand[2] ? basePoints : 0;
+    return subsystemStates.demandU[2] ? basePoints : 0;
 }
 function calculateFWPRate() {
     const maxPPS = 0.1;
-    return (!subsystemStates.fwp && subsystemStates.demand[2]) ? maxPPS : 0;
+    return (!subsystemStates.fwp && subsystemStates.demandU[2]) ? maxPPS : 0;
 }
 function calculateDemandRate() {
     const maxPPS = 0.4;
-
-    const values = Object.values(subsystemStates.demand);
-    const unitsMet = values.filter(v => v).length;
-    return maxPPS * (unitsMet / values.length);
+    return subsystemStates.demandP ? maxPPS : 0;
 }
 function calculateTotalRate() {
     const u1Rate = calculateU1Rate();
@@ -131,11 +133,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   const allToggles = document.querySelectorAll('.subsystem-toggle');
+  
   allToggles.forEach(toggle => {
     const system = toggle.dataset.system;
-    if (system === "fwp") { // boolean systems
+    if (system === "fwp" || system === "demandP" || system === "u1_da_config" || system === "u2_da_config") {
       subsystemStates[system] = toggle.checked;
-    } else { // array systems
+    } else {
       const subsystem = toggle.dataset.subsystem;
       subsystemStates[system][subsystem] = toggle.checked;
     }
@@ -144,12 +147,20 @@ document.addEventListener('DOMContentLoaded', function () {
   allToggles.forEach(toggle => {
     toggle.addEventListener('change', function() {
       const system = toggle.dataset.system;
-      if (system === "fwp") { // boolean systems
+      
+      if (system === "demandP") {
+        subsystemStates.demandP = this.checked;
+        if (!this.checked) {
+          subsystemStates.demandU[1] = false;
+          subsystemStates.demandU[2] = false;
+        }
+      } else if (system === "fwp" || system === "u1_da_config" || system === "u2_da_config") {
         subsystemStates[system] = this.checked;
-      } else { // array systems
+      } else {
         const subsystem = this.dataset.subsystem;
         subsystemStates[system][subsystem] = this.checked;
       }
+      
       updateRates();
       updateRanks();
     });
@@ -170,15 +181,25 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('demand-rate').textContent = demandRate.toFixed(2);
     document.getElementById('total-rate').textContent = totalRate.toFixed(2);
 
+    allToggles.forEach(toggle => {
+      const system = toggle.dataset.system;
+      if (system === "fwp" || system === "demandP" || system === "u1_da_config" || system === "u2_da_config") {
+        toggle.checked = subsystemStates[system];
+      } else {
+        const subsystem = toggle.dataset.subsystem;
+        toggle.checked = subsystemStates[system][subsystem];
+      }
+    });
+
     const u1Warning = document.getElementById('u1-demand-warning');
     const u2Warning = document.getElementById('u2-demand-warning');
     const tcrWarning = document.getElementById('tcr-demand-warning');
     const fwpWarning = document.getElementById('fwp-demand-warning');
 
-    if (u1Warning) { u1Warning.style.display = !subsystemStates.demand[1] ? 'inline' : 'none'; }
-    if (u2Warning) { u2Warning.style.display = !subsystemStates.demand[2] ? 'inline' : 'none'; }
-    if (tcrWarning) { tcrWarning.style.display = !subsystemStates.demand[2] ? 'inline' : 'none'; }
-    if (fwpWarning) { fwpWarning.style.display = !subsystemStates.demand[2] ? 'inline' : 'none'; }
+    if (u1Warning) { u1Warning.style.display = !subsystemStates.demandU[1] ? 'inline' : 'none'; }
+    if (u2Warning) { u2Warning.style.display = !subsystemStates.demandU[2] ? 'inline' : 'none'; }
+    if (tcrWarning) { tcrWarning.style.display = !subsystemStates.demandU[2] ? 'inline' : 'none'; }
+    if (fwpWarning) { fwpWarning.style.display = !subsystemStates.demandU[2] ? 'inline' : 'none'; }
 
     return totalRate || 0;
   }
