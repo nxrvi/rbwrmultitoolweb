@@ -170,6 +170,16 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('demand-rate').textContent = demandRate.toFixed(2);
     document.getElementById('total-rate').textContent = totalRate.toFixed(2);
 
+    const u1Warning = document.getElementById('u1-demand-warning');
+    const u2Warning = document.getElementById('u2-demand-warning');
+    const tcrWarning = document.getElementById('tcr-demand-warning');
+    const fwpWarning = document.getElementById('fwp-demand-warning');
+
+    if (u1Warning) { u1Warning.style.display = !subsystemStates.demand[1] ? 'inline' : 'none'; }
+    if (u2Warning) { u2Warning.style.display = !subsystemStates.demand[2] ? 'inline' : 'none'; }
+    if (tcrWarning) { tcrWarning.style.display = !subsystemStates.demand[2] ? 'inline' : 'none'; }
+    if (fwpWarning) { fwpWarning.style.display = !subsystemStates.demand[2] ? 'inline' : 'none'; }
+
     return totalRate || 0;
   }
 
