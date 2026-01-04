@@ -156,10 +156,10 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -53%);
   text-align: center;
   padding: 20px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   background: linear-gradient(135deg, rgba(128, 128, 128, 0.4), rgba(0, 0, 0, 0.7));
   border-radius: 10px;
   color: white;
@@ -215,7 +215,7 @@ h2 {
 }
 
 .systems-container {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 8px;
   overflow: hidden;
@@ -237,7 +237,7 @@ h2 {
 
 .systems-header h3 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .dropdown-arrow {
