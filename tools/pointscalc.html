@@ -49,6 +49,85 @@
                 </div>
             </div>
 
+            <div class="systems-container">
+                <div class="systems-header" id="systems-toggle">
+                    <h3>Point Rate Systems</h3>
+                    <span class="dropdown-arrow">▼</span>
+                </div>
+                <div class="systems-content" id="systems-content">
+                    <div class="system-group">
+                        <h4>U1 (Max: 1.0 pts/s)</h4>
+                        <div class="subsystems">
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u1" data-subsystem="1" unchecked> Turbine Auto</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u1" data-subsystem="2" unchecked> Reactor Auto</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u1" data-subsystem="3" unchecked> MCC Auto</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u1" data-subsystem="4" unchecked> Balancer Auto</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u1" data-subsystem="5" unchecked> Condenser Auto</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u1" data-subsystem="6" unchecked> Deaerator Auto</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u1" data-subsystem="7" unchecked> Deaerator Configured</label>
+                        </div>
+                        <div class="system-rate">Current Rate: <span id="u1-rate">1.00</span> pts/s</div>
+                    </div>
+
+                    <div class="system-group">
+                        <h4>U2 (Max: 1.0 pts/s)</h4>
+                        <div class="subsystems">
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2" data-subsystem="1" unchecked> Turbine Auto</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2" data-subsystem="2" unchecked> Reactor Auto</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2" data-subsystem="3" unchecked> MCC Auto</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2" data-subsystem="4" unchecked> Balancer Auto</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2" data-subsystem="5" unchecked> Condenser Auto</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2" data-subsystem="6" unchecked> Deaerator Auto</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2" data-subsystem="7" unchecked> EDG Auto</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2" data-subsystem="8" unchecked> Deaerator Configured</label>
+                        </div>
+                        <div class="system-rate">Current Rate: <span id="u2-rate">1.00</span> pts/s</div>
+                    </div>
+
+                    <div class="system-group">
+                        <h4>TCR (Max: 0.33 pts/s)</h4>
+                        <div class="subsystems">
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="tcr" data-subsystem="1" unchecked> Steam Sealing Auto</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="tcr" data-subsystem="2" unchecked> Oil Temp Auto</label>
+                        </div>
+                        <div class="system-rate">Current Rate: <span id="tcr-rate">0.33</span> pts/s</div>
+                    </div>
+
+                    <div class="system-group">
+                        <h4>U2 FWP (Max: 0.1 pts/s)</h4>
+                        <div class="subsystems">
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="fwp" unchecked> Auto</label>
+                        </div>
+                        <div class="system-rate">Current Rate: <span id="fwp-rate">0.1</span> pts/s</div>
+                    </div>
+
+                    <div class="system-group">
+                        <h4>Plant Demand (Max: 0.4 pts/s)</h4>
+                        <div class="subsystems">
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="demand" data-subsystem="1" checked> U1 Demand Met</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="demand" data-subsystem="2" checked> U2 Demand Met</label>
+                        </div>
+                        <div class="system-rate">Current Rate: <span id="demand-rate">0.40</span> pts/s</div>
+                    </div>
+
+                    <div class="total-rate">
+                        <strong>Total Rate: <span id="total-rate">2.90</span> pts/s</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="output">
+                <div class="input-group">
+                    <label for="time-until">Minutes until next rank</label>
+                    <input type="text" id="time-until" value="5" readonly>
+                </div>
+
+                <div class="input-group">
+                    <label for="points-needed">Points until next rank</label>
+                    <input type="number" id="points-needed" value="1000" readonly>
+                </div>
+            </div>
+
             <div class="output">
                 <div class="input-group">
                     <label for="time-until">Minutes until next rank</label>
@@ -65,8 +144,7 @@
                 <div class="rank-info">
                     <p>Your current rank is: <span id="current-rank">Visitor</span></p>
                     <p>Your next rank will be: <span id="next-rank">Trainee</span></p>
-                    <p class="minute-info">Minutes until next rank is calculated as if both Units are fully manual and Plant Demand is
-                        met!</p>
+                    <h6><i>Note: Points granted from Inspections aren't considered in this calculator.</i></h6>
                 </div>
             </div>
         </div>

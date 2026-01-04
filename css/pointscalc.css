@@ -159,7 +159,7 @@ body {
   transform: translate(-50%, -50%);
   text-align: center;
   padding: 20px;
-  font-size: 1.25rem;
+  font-size: 1rem;
   background: linear-gradient(135deg, rgba(128, 128, 128, 0.4), rgba(0, 0, 0, 0.7));
   border-radius: 10px;
   color: white;
@@ -214,6 +214,132 @@ h2 {
     color: #999999;
 }
 
+.systems-container {
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.systems-header {
+  background: rgba(255, 203, 91, 0.8);
+  padding: 12px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.systems-header:hover {
+  background: rgba(255, 152, 0, 0.9);
+}
+
+.systems-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.dropdown-arrow {
+  font-size: 1rem;
+  transition: transform 0.3s;
+}
+
+.systems-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  padding: 0 20px;
+}
+
+.systems-content.show {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  transition: max-height 0.3s ease-in;
+}
+
+.systems-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.systems-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.systems-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 152, 0, 0.6);
+  border-radius: 4px;
+}
+
+.systems-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 152, 0, 0.8);
+}
+
+.system-group {
+  margin-bottom: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  border-left: 3px solid #ff9800;
+}
+
+.system-group h4 {
+  margin: 0 0 10px 0;
+  color: #ff9800;
+  font-size: 1rem;
+}
+
+.subsystems {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.subsystems label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  font-size: 0.9rem;
+}
+
+.subsystems label:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.subsystem-toggle {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.system-rate {
+  text-align: right;
+  font-size: 0.95rem;
+  color: #4CAF50;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.total-rate {
+  text-align: center;
+  padding: 15px;
+  background: rgba(76, 175, 80, 0.2);
+  border-radius: 6px;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+.total-rate strong {
+  color: #4CAF50;
+}
 
 .footer {
   background: linear-gradient(30deg, #c14141, #62bf66);
