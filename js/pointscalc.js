@@ -19,7 +19,7 @@ const ranks = [
     new Rank("Junior Operator", 5000),
     new Rank("Worker", 2000),
     new Rank("Trainee", 1000),
-    new Rank("Visitor", 0)
+    new Rank("Visitor", 0),
 ];
 
 const subsystemStates = {
@@ -28,7 +28,7 @@ const subsystemStates = {
     u1_da_config: true,
 
     u2: {},
-    u2_da_config: true,
+    u2_abnormal_config: {},
 
     tcr: {},
     fwp: false,
@@ -48,8 +48,9 @@ function calculateU1Rate() {
 function calculateU2Rate() {
     const maxPPS = 1;
 
-    const autosActiveCount = Object.values(subsystemStates.u2).filter(v => v).length;
-    const basePoints = maxPPS / (autosActiveCount + 1 + (!subsystemStates.u2_da_config ? 1 : 0));
+    autosActiveCount = Object.values(subsystemStates.u2).filter(v => v).length;
+    if (subsystemStates.u2[7]) { autosActiveCount += 1; } // bonaktan: edg auto has the weight of 2 regular autos
+    const basePoints = maxPPS / (autosActiveCount + 1);
 
     return subsystemStates.demandU[2] ? basePoints : 0;
 }
@@ -64,20 +65,21 @@ function calculateTCRRate() {
 }
 function calculateFWPRate() {
     const maxPPS = 0.1;
-    return (!subsystemStates.fwp && subsystemStates.demandU[2]) ? maxPPS : 0;
+    return !subsystemStates.fwp && subsystemStates.demandU[2] ? maxPPS : 0;
 }
 function calculateDemandRate() {
     const maxPPS = 0.4;
     return subsystemStates.demandP ? maxPPS : 0;
 }
-function calculateTotalRate() {
-    const u1Rate = calculateU1Rate();
-    const u2Rate = calculateU2Rate();
-    const tcrRate = calculateTCRRate();
-    const fwpRate = calculateFWPRate();
-    const demandRate = calculateDemandRate();
-    return (u1Rate + u2Rate + tcrRate + fwpRate + demandRate)  || 0;
+function calculateAbnormalRate(u2Rate) {
+      // bonaktan: every abnormal config decreases point gain == 1 regular auto
+      const abnormalActiveCount = Object.values(subsystemStates.u2_abnormal_config).filter((v) => v).length; 
+      const autoCount = (1 / (u2Rate)) - 1
+      const abnormalRate = u2Rate - (1 / (autoCount + abnormalActiveCount + 1))
+
+      return abnormalRate
 }
+
 
 function calculateRank(totalPoints) {
     let currentRank = ranks[ranks.length - 1];
@@ -172,14 +174,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const tcrRate = calculateTCRRate();
     const fwpRate = calculateFWPRate();
     const demandRate = calculateDemandRate();
-    const totalRate = u1Rate + u2Rate + tcrRate + fwpRate + demandRate;
+    const abnormalRate = calculateAbnormalRate(u2Rate);
+    const totalRate = u1Rate + u2Rate + tcrRate + fwpRate + demandRate - abnormalRate;
 
-    document.getElementById('u1-rate').textContent = u1Rate.toFixed(2);
-    document.getElementById('u2-rate').textContent = u2Rate.toFixed(2);
-    document.getElementById('tcr-rate').textContent = tcrRate.toFixed(2);
-    document.getElementById('fwp-rate').textContent = fwpRate.toFixed(2);
-    document.getElementById('demand-rate').textContent = demandRate.toFixed(2);
-    document.getElementById('total-rate').textContent = totalRate.toFixed(2);
+    document.getElementById('u1-rate').textContent = u1Rate.toFixed(3);
+    document.getElementById('u2-rate').textContent = u2Rate.toFixed(3);
+    document.getElementById('tcr-rate').textContent = tcrRate.toFixed(3);
+    document.getElementById('fwp-rate').textContent = fwpRate.toFixed(3);
+    document.getElementById('demand-rate').textContent = demandRate.toFixed(3);
+    document.getElementById('total-rate').textContent = totalRate.toFixed(3);
+    document.getElementById('abnormal-rate').textContent = abnormalRate.toFixed(3);
 
     allToggles.forEach(toggle => {
       const system = toggle.dataset.system;

@@ -80,8 +80,6 @@
                             <label><input type="checkbox" class="subsystem-toggle" data-system="u2" data-subsystem="5" unchecked> Condenser Auto</label>
                             <label><input type="checkbox" class="subsystem-toggle" data-system="u2" data-subsystem="6" unchecked> Deaerator Auto</label>
                             <label><input type="checkbox" class="subsystem-toggle" data-system="u2" data-subsystem="7" unchecked> EDG Auto</label>
-
-                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2_da_config" data-subsystem="1" checked> Deaerator Configured</label>
                         </div>
                         <div class="system-rate">Current Rate: <span id="u2-rate">1.00</span> pts/s</div>
                     </div>
@@ -113,7 +111,18 @@
                         </div>
                         <div class="system-rate">Current Rate: <span id="demand-rate">0.40</span> pts/s</div>
                     </div>
-
+                    <div class="system-group">
+                        <h4>U2 Abnormal Configuration</h4>
+                        <div class="subsystems">
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2_abnormal_config" data-subsystem="1" checked>Deaerator Not Configured</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2_abnormal_config" data-subsystem="2" checked>Turbine Bypass Used</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2_abnormal_config" data-subsystem="3" checked>Polisher Bypass Used</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2_abnormal_config" data-subsystem="4" checked>MCC Water Levels < -3m </label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2_abnormal_config" data-subsystem="5" checked>Turbine Aux Pump Used</label>
+                            <label><input type="checkbox" class="subsystem-toggle" data-system="u2_abnormal_config" data-subsystem="6" checked>Feedwater Pump Temperature Low</label>
+                        </div>
+                        <div class="system-rate">Rate Decrease: <span id="abnormal-rate">0.00</span> pts/s</div>
+                    </div>
                     <div class="total-rate">
                         <strong>Total Rate: <span id="total-rate">2.90</span> pts/s</strong>
                     </div>
