@@ -4,34 +4,65 @@ document.addEventListener("DOMContentLoaded", function () {
     const feedwaterInput = document.getElementById("feedwater");
     const genLoadInput = document.getElementById("gen-load");
     const siteUsage = document.getElementById("site-usage");
+    const unit1_toggle = document.getElementById("unit1-toggle");
+    const unit2_toggle = document.getElementById("unit2-toggle");
 
+    const systemsToggle = document.getElementById('systems-toggle');
+    const systemsContent = document.getElementById('systems-content');
+
+    let selected_Unit = 1;
     let suppressTB_Demand = false;
     let suppressTB_APRM = false;
 
     const CalcType = {
-        MWtoAPRM: 'MWtoAPRM',
-        APRMtoMW: 'APRMtoMW'
+        demandToThermal: 'demandToThermal',
+        thermalToMW: 'thermalToMW'
     };
 
     let usage = 61.32;
 
-  const navbarToggle = document.querySelector('.navbar-toggle');
-  const navbarlinks = document.querySelector('.navbar-links');
-  const navbar = document.querySelector('.navbar');
+    const navbarToggle = document.querySelector('.navbar-toggle');
+    const navbarlinks = document.querySelector('.navbar-links');
+    const navbar = document.querySelector('.navbar');
 
-  if (navbarToggle && navbar && navbarlinks) {
-    navbarToggle.addEventListener('click', function () {
-      navbarlinks.classList.toggle('show');
-      navbar.classList.toggle('show');
+    if (navbarToggle && navbar && navbarlinks) {
+        navbarToggle.addEventListener('click', function () {
+        navbarlinks.classList.toggle('show');
+        navbar.classList.toggle('show');
     });
-  } else {
-    console.error("Navbar toggle or navbar elements not found!");
-  }
+    } else {
+        console.error("Navbar toggle or navbar elements not found!");
+    }
+
+
+    if (systemsToggle && systemsContent) {
+        systemsToggle.addEventListener('click', function() {
+            systemsContent.classList.toggle('show');
+            const arrow = systemsToggle.querySelector('.dropdown-arrow');
+            arrow.textContent = systemsContent.classList.contains('show') ? '▲' : '▼';
+        });
+    }
+
+    if (unit1_toggle && unit2_toggle) {
+        unit1_toggle.addEventListener('click', function() {
+            selected_Unit = 1;
+            unit1_toggle.checked = true;
+            unit2_toggle.checked = false;
+            document.getElementById('unit-choosen').textContent = selected_Unit;
+        });
+
+        unit2_toggle.addEventListener('click', function() {
+            selected_Unit = 2;
+            unit2_toggle.checked = true;
+            unit1_toggle.checked = false;
+            document.getElementById('unit-choosen').textContent = selected_Unit;
+        });
+    }
 
 
     class Calculator {
         constructor(usage) {
-            this.usage = usage
+            this.usage = usage;
         }
 
         setUsage(value) {
@@ -40,50 +71,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
         calc(type, value){
             let result;
-            if (type === CalcType.APRMtoMW) {
-                result = this.APRMtoMW(value);
+            if (type === CalcType.thermalToMW) {
+                result = this.thermalToMW(value);
             }
-            else if (type === CalcType.MWtoAPRM) {
-                result = this.MWtoAPRM(value);
+            else if (type === CalcType.demandToThermal) {
+                result = this.demandToThermal(value);
             }
             return result;
         }
 
-        APRMtoMW(aprm){
-            let mw = this.CalcGenLoad(aprm);
+        thermalToMW(thermal) {
+            let gen_load = this.CalcGenLoad(thermal);
+            return gen_load.toFixed(0);
+        }
 
-            if (mw > 0) {
-                return (mw -((1.299 * aprm) - 13)).toFixed(0);
-            }else{
-                return 0;
+        demandToThermal(demand) {
+            let thermal = this.CalcThermal(demand);
+            return thermal.toFixed(0);
+        }
+
+        calcFlow(thermal){
+            if (selected_Unit === 1) {
+                return Math.max(0,
+                    (82.8 + (13.7 * thermal) + (5.87 * Math.pow(10, -3) * Math.pow(thermal, 2))));
+            } else if (selected_Unit === 2) {
+                return Math.max(0,
+                    (115 + (12.2 * thermal) + (9.27 * Math.pow(10, -3) * Math.pow(thermal, 2))));
             }
         }
 
-        MWtoAPRM(mw){
-            return parseFloat(this.CalcAprm(mw).toFixed(2));
+        CalcGenLoad(thermal) {
+            if (selected_Unit === 1) {
+                return Math.max(0,
+                    (-135 + (13 * thermal) + (5.33 * Math.pow(10, -3) * Math.pow(thermal, 2))));
+            } else if (selected_Unit === 2) {
+                return Math.max(
+                    0,
+                    (-143 + (12.5 * thermal) - (2.06 * Math.pow(10, -3) * Math.pow(thermal, 2))));
+            }
         }
 
-        calcFlow(mw){
-            let flow;
-
-            flow = 82.8 + (13.7 * mw) + (5.87 * Math.pow(10, -3) * Math.pow(mw, 2));
-
-            return Math.round(flow) + 2;
+        CalcThermal(demand) {
+            if (selected_Unit === 1) {
+                return Math.max(0, ((-13 + Math.sqrt(169 + 0.02132 * (demand + 135 + this.usage))) / 0.01066));
+            } else if (selected_Unit === 2) {
+                return Math.max(0,
+                    ((12.5 + Math.sqrt(156.25 - 0.00824 * (mw + 143))) / 0.00412));
+            }
         }
 
-
-        CalcGenLoad(mw) {
-            let gen_load = -135 + (13 * mw) + (5.33 * Math.pow(10, -3) * Math.pow(mw, 2));
-
-          return Math.max(0, Math.round(gen_load));
+        getUsage() {
+            return this.usage;
         }
-
-        CalcAprm(mw) {
-            let aprm;
-            aprm = (mw + this.usage + 163) / 14.3;
-            return parseFloat(aprm.toFixed(2));
-        }
-
     }
 
     const calculator = new Calculator(usage);
@@ -94,8 +133,6 @@ document.addEventListener("DOMContentLoaded", function () {
         x = parseFloat(x);
         calculator.setUsage(x);
     });
-
-
 
     demandInput.addEventListener('input', function () {
         if (suppressTB_Demand) return;
@@ -131,7 +168,8 @@ document.addEventListener("DOMContentLoaded", function () {
             lbError.classList.remove('visible');
         }
 
-        const y = calculator.calc(CalcType.MWtoAPRM, a)
+        let y = calculator.calc(CalcType.demandToThermal, a)
+        y = parseFloat(y);
         aprmInput.value = y;
 
         if (y > 108) {
@@ -143,8 +181,8 @@ document.addEventListener("DOMContentLoaded", function () {
             lbError.classList.remove('visible');
         }
 
-        feedwaterInput.value = calculator.calcFlow(y);
-        genLoadInput.value = calculator.CalcGenLoad(y);
+        feedwaterInput.value = Math.round(calculator.calcFlow(y) + 2); // +2 cause of mathematical rounding errors causing offset by 1 to 3
+        genLoadInput.value = Math.round(calculator.CalcGenLoad(y));
 
         suppressTB_APRM = false;
     });
@@ -184,10 +222,10 @@ document.addEventListener("DOMContentLoaded", function () {
             lbError.classList.remove('visible');
         }
 
-        y = calculator.calc(CalcType.APRMtoMW, a);
+        y = calculator.calc(CalcType.thermalToMW, a);
+        y = parseFloat(y);
 
-
-        demandInput.value = y;
+        genLoadInput.value = y;
 
         if (a > 108) {
             lbError.classList.add('visible');
@@ -198,8 +236,8 @@ document.addEventListener("DOMContentLoaded", function () {
             lbError.classList.remove('visible');
         }
 
-        feedwaterInput.value = calculator.calcFlow(a);
-        genLoadInput.value = calculator.CalcGenLoad(a);
+        feedwaterInput.value = Math.round(calculator.calcFlow(a) + 2); // +2 cause of mathematical rounding errors causing offset by 1 to 3
+        demandInput.value = Math.round(y + calculator.getUsage());
 
         suppressTB_Demand = false;
     });

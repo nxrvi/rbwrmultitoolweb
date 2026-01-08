@@ -170,16 +170,54 @@ h2 {
   text-align: center;
 }
 
-.calculator {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
+.content-calculator {
+  margin-bottom: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  border-left: 3px solid #ff9800;
 }
 
-.output {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
+.calculator-group h4 {
+    margin: 0 0 10px 0;
+    color: #ff9800;
+    font-size: 1.4rem;
+}
+
+.calculator {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.calculator label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.calculator label:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.calculator input {
+  min-width: 100px;
+  max-width: 200px;
+  padding: 5px;
+  text-align: right;
+  background-color: #444;
+  border: 1px solid #555;
+  color: #fff;
+  border-radius: 4px;
+  flex-grow: 1;
 }
 
 .error {
@@ -197,13 +235,123 @@ h2 {
   height: 1em;
 }
 
-.input-group label {
-  display: block;
-  margin-bottom: 5px;
-  text-align: center;
+.systems-container {
+  margin-bottom: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.input-group input {
+.systems-header {
+  background: rgba(255, 152, 0, 0.9);
+  padding: 12px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.systems-header:hover {
+  background: rgba(255, 152, 0, 0.9);
+}
+
+.systems-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.dropdown-arrow {
+  font-size: 1rem;
+  transition: transform 0.3s;
+}
+
+.systems-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  padding: 0 20px;
+}
+
+.systems-content.show {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  transition: max-height 0.3s ease-in;
+}
+
+.systems-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.systems-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.systems-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 152, 0, 0.6);
+  border-radius: 4px;
+}
+
+.systems-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 152, 0, 0.8);
+}
+
+.system-group {
+  margin-bottom: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  border-left: 3px solid #ff9800;
+}
+
+.system-group h4 {
+  margin: 0 0 10px 0;
+  color: #ff9800;
+  font-size: 1rem;
+}
+
+.subsystems {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.subsystems label {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  font-size: 0.9rem;
+}
+
+.subsystems label:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.subsystem-toggle {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.system-rate {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #4CAF50;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.subsystem-input {
   width: 150px;
   padding: 5px;
   text-align: right;
@@ -211,15 +359,7 @@ h2 {
   border: 1px solid #555;
   color: #fff;
   border-radius: 4px;
-}
-
-.input-group {
-  margin-bottom: 10px;
-}
-
-#gen-load {
-    position: relative;
-    left: 0;
+  flex-grow: 1;
 }
 
 
