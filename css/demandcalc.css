@@ -22,7 +22,6 @@ body {
   width: auto;
 }
 
-
 .navbar {
   flex-basis: 60px;
   display: flex;
@@ -471,8 +470,7 @@ h2 {
     width: 85%;
   }
 
-  .calculator,
-  .output {
+  .calculator {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
