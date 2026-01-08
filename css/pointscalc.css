@@ -22,7 +22,6 @@ body {
   width: auto;
 }
 
-
 .navbar {
   flex-basis: 60px;
   display: flex;
@@ -168,39 +167,59 @@ body {
 h2 {
   margin-bottom: 20px;
   text-align: center;
+  font-size: 30px;
+}
+
+.content-calculator {
+  margin-bottom: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  border-left: 3px solid #ff9800;
+}
+
+.calculator-group h4 {
+  margin: 0 0 10px 0;
+  color: #ff9800;
+  font-size: 1.4rem;
 }
 
 .calculator {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
-}
-
-.output {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
-}
-
-.input-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
   margin-bottom: 10px;
 }
 
-.input-group label {
-  display: block;
-  margin-bottom: 5px;
-  text-align: center;
+.calculator label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  font-size: 1.2rem;
+  color: #ffffff;
 }
 
-.input-group input {
-  width: 150px;
+.calculator label:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.calculator input {
+  min-width: 100px;
+  max-width: 200px;
   padding: 5px;
   text-align: right;
   background-color: #444;
   border: 1px solid #555;
   color: #fff;
   border-radius: 4px;
+  flex-grow: 1;
 }
+
 
 .rank-info {
   text-align: left;
@@ -445,12 +464,12 @@ h2 {
     width: 85%;
   }
 
-  .calculator,
-  .output {
+  .calculator {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     margin-bottom: 20px;
-    width: 100%;
+    flex-direction: column;
   }
 
   .input-group {

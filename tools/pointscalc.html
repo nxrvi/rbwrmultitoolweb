@@ -33,19 +33,13 @@
     <div class="content">
         <div class="container">
             <h2>Calculate Your Points</h2>
-
-            <div class="calculator">
-                <div class="input-group">
-                    <label for="unit1">Unit 1 Points</label>
-                    <input type="number" id="unit1" value="0" maxlength="7" min="0">
-                </div>
-                <div class="input-group">
-                    <label for="unit2">Unit 2 Points</label>
-                    <input type="number" id="unit2" value="0" maxlength="7" min="0">
-                </div>
-                <div class="input-group">
-                    <label for="total">Total Points</label>
-                    <input type="number" id="total" value="0" readonly>
+            <div class="content-calculator">
+                <div class="calculator-group">
+                    <h4>Input</h4>
+                    <div class="calculator">
+                        <label>Unit 1 Points<input type="number" id="unit1" value="0"></label>
+                        <label>Unit 2 Points<input type="number" id="unit2" value="0"></label>
+                    </div>
                 </div>
             </div>
 
@@ -129,23 +123,19 @@
                 </div>
             </div>
 
-            <div class="output">
-                <div class="input-group">
-                    <label for="time-until">Minutes until next rank</label>
-                    <input type="text" id="time-until" value="5" readonly>
-                </div>
-
-                <div class="input-group">
-                    <label for="points-needed">Points until next rank</label>
-                    <input type="number" id="points-needed" value="1000" readonly>
-                </div>
-            </div>
-
-            <div class="output">
-                <div class="rank-info">
-                    <p><b>Your current rank is: <i><span id="current-rank">Visitor</span></i></b></p>
-                    <p><b>Your next rank will be: <i><span id="next-rank">Trainee</span></i></b></p>
-                    <small><i>Note: Points granted from Inspections aren't considered in this calculator.</i></small>
+            <div class="content-calculator">
+                <div class="calculator-group">
+                    <h4>Output</h4>
+                    <div class="calculator">
+                        <label>Total Points<input type="number" id="total" value="0" readonly></label>
+                        <label>Points until next rank<input type="number" id="points-needed" value="1000" readonly></label>
+                        <label>Minutes until next rank<input type="number" id="time-until" value="0" readonly></label>
+                    </div>
+                    <div class="rank-info">
+                        <p><b>Your current rank is: <i><span id="current-rank">Visitor</span></i></b></p>
+                        <p><b>Your next rank will be: <i><span id="next-rank">Trainee</span></i></b></p>
+                        <small><i>Note: Points granted from Inspections aren't considered in this calculator.</i></small>
+                    </div>
                 </div>
             </div>
         </div>
