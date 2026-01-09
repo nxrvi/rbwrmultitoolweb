@@ -155,13 +155,34 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -53%);
+  transform: translate(-50%, -50%);
   text-align: center;
   padding: 20px;
   font-size: 0.9rem;
   background: linear-gradient(135deg, rgba(128, 128, 128, 0.4), rgba(0, 0, 0, 0.7));
   border-radius: 10px;
   color: white;
+  max-height: 80%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: rgba(255, 152, 0, 0.6);
+  border-radius: 4px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 152, 0, 0.8);
 }
 
 h2 {
@@ -456,10 +477,14 @@ h2 {
   }
 
   .container {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: rgba(51, 51, 51, 0.8);
     padding: 20px;
     border-radius: 20px;
-    margin: 20px auto;
+    margin: 15px auto;
     max-width: 100%;
     width: 85%;
   }

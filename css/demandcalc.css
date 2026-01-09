@@ -162,6 +162,27 @@ body {
   background: linear-gradient(135deg, rgba(128, 128, 128, 0.4), rgba(0, 0, 0, 0.7));
   border-radius: 10px;
   color: white;
+  max-height: 80%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: rgba(255, 152, 0, 0.6);
+  border-radius: 4px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 152, 0, 0.8);
 }
 
 h2 {
@@ -274,28 +295,9 @@ h2 {
 
 .systems-content.show {
   max-height: 300px;
-  overflow-y: auto;
   overflow-x: hidden;
   padding: 20px;
   transition: max-height 0.3s ease-in;
-}
-
-.systems-content::-webkit-scrollbar {
-  width: 8px;
-}
-
-.systems-content::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-}
-
-.systems-content::-webkit-scrollbar-thumb {
-  background: rgba(255, 152, 0, 0.6);
-  border-radius: 4px;
-}
-
-.systems-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 152, 0, 0.8);
 }
 
 .system-group {
