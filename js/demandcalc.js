@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         feedwaterInput.value = Math.round(calculator.calcFlow(a) + 2); // +2 cause of mathematical rounding errors causing offset by 1 to 3
-        demandInput.value = Math.round( y - calculator.getUsage());
+        demandInput.value = Math.round(y - calculator.getUsage());
 
         suppressTB_Demand = false;
     });
