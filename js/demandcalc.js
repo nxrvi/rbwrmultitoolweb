@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return Math.max(0, ((-13 + Math.sqrt(169 + 0.02132 * (demand + 135 + this.usage))) / 0.01066));
             } else if (selected_Unit === 2) {
                 return Math.max(0,
-                    ((12.5 + Math.sqrt(156.25 - 0.00824 * (mw + 143))) / 0.00412));
+                    ((-12.5 + Math.sqrt(156.25 + 0.00824 * (demand + 143 + this.usage))) / 0.00412));
             }
         }
 
